@@ -6,21 +6,22 @@
 5. [TestCafe: Easier End-to-end Web App Testing with Node.js](https://www.sitepoint.com/testcafe-easier-end-end-web-app-testing-node-js/)
 
 ## Main Goal:
-Create a demo project with TestCafe to cover a cluster creation workflow.
+Create a demo project with TestCafe to cover a cluster creation workflow with Cloudbreak GUI.
 
-### Possibilities with testcafe/testcafe Docker images
-With the help of [Official TestCafe Docker image.](https://hub.docker.com/r/testcafe/testcafe/) you can execute headless Google Chrome and Firefox e2e tests in Docker container.
+## Possibilities with testcafe/testcafe Docker image:
+Execute headless Google Chrome and Firefox e2e tests in Docker container with the help of [Official TestCafe Docker image.](https://hub.docker.com/r/testcafe/testcafe/)
 
-### To run tests in this container
-export BASE_URL=your.url
+### to run tests in this container on desktop:
+1. ```export BASE_URL=your.url```
+2. ```make run```
 
-### With Make target
-```
-make run
-```
+### with Bash script on CI:
+[This script](scripts/run-e2e-tests.sh) is optimized for CI execution. So the Docker container starts only with `-i ` operator.
 
-### With Bash script
-[This script](scripts/run-e2e-tests.sh) is optimized for CI execution. So the Docker container starts with `-i ` and no `-t` operator.
+>  * -t  : Allocate a pseudo-tty
+>  * -i  : Keep STDIN open even if not attached
+>
+>  [Docker run reference](from https://docs.docker.com/engine/reference/run/)
 
 ## Comparison (brief list from several articles):
 
@@ -32,7 +33,7 @@ make run
 |Inbuilt test runner|Available|Available|Available|Available|
 |Supported testing frameworks|Jasmine, Mocha, Cucumber|Jasmine, Mocha, Cucumber|Mocha, inbuilt framework|inbuilt framework|
 |Reporting|Junit Xml Reporter, Protractor Html screenshot reporter, Jasmine spec reporter|Allure reporting, Jasmine Spec reporter, Junit xml reporter, Cucumber reporting|Junit xml reporter,Mocha reporting|spec,list,minimal,xUnit,JSON|
-|Parallel Execution	Supported|Supported|Supported|Only Concurrency (is an optional mode that allows you to invoke multiple instances of the same browser. These instances constitute the pool of browsers against which tests run concurrently, i.e. each test runs in the first free instance.)|
+|Parallel Execution|Supported|Supported|Supported|Only Concurrency (is an optional mode that allows you to invoke multiple instances of the same browser. These instances constitute the pool of browsers against which tests run concurrently, i.e. each test runs in the first free instance.)|
 |Cloud Execution (Sauce Labs, BrowserStack, Testing bot)|Supported|Supported|Supported|Supported|
 |Mobile Support (Appium)|Partial support (Supports mobile browsers but does not support native apps)|Android, IOS|Android, IOS|Android, IOS (can run on mobile devices by default, without requiring custom configuration)|
 |Synchronous execution|Supported|Supported|Supported|Supported|
