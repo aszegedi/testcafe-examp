@@ -1,0 +1,26 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "esnext",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "declaration": true,
+    "removeComments": false,
+    "noImplicitAny": false,
+    "inlineSources": true,
+    "outDir": "tmp",
+    "typeRoots": [
+      "types",
+      "node_modules/@types",
+    ],
+    "types": [
+      "node",
+      "testcafe"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
+}
