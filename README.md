@@ -1,5 +1,5 @@
 ## Background:
-1. [An Overview of JavaScript Testing in 2017](https://medium.com/powtoon-engineering/a-complete-guide-to-testing-javascript-in-2017-a217b4cd5a2a)
+1. [An Overview of JavaScript Testing in 2018](https://medium.com/welldone-software/an-overview-of-javascript-testing-in-2018-f68950900bc3)
 2. [Use React tools for better Angular apps](https://medium.com/@martin_hotell/use-react-tools-for-better-angular-apps-b0f14f3f8114)
 3. [UI Test Automation Frameworks Showdown: TestCafé versus Nightwatch.js](http://www.pqatesting.com/our_ideas/blog/u)
 4. [End-to-End Testing with TestCafe](http://mherman.org/testcafe-example/#1)
@@ -9,8 +9,18 @@
 Create a demo project with TestCafe to cover a cluster creation workflow.
 
 ### Possibilities with testcafe/testcafe Docker images
+With the help of [Official TestCafe Docker image.](https://hub.docker.com/r/testcafe/testcafe/) you can execute headless Google Chrome and Firefox e2e tests in Docker container.
 
-[Official TestCafe Docker image.](https://hub.docker.com/r/testcafe/testcafe/)
+### To run tests in this container
+export BASE_URL=your.url
+
+### With Make target
+```
+make run
+```
+
+### With Bash script
+[This script](scripts/run-e2e-tests.sh) is optimized for CI execution. So the Docker container starts with `-i ` and no `-t` operator.
 
 ## Comparison (brief list from several articles):
 
