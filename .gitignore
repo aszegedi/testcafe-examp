@@ -12,4 +12,5 @@ yarn-error.*
 node_modules
 tmp
 Vagrantfile
+.vagrant
 /pages/loginPage.ts
