@@ -4,11 +4,13 @@
     "module": "commonjs",
     "target": "esnext",
     "moduleResolution": "node",
+    "importHelpers": true,
     "sourceMap": true,
     "declaration": true,
     "removeComments": false,
     "noImplicitAny": false,
     "inlineSources": true,
+    "skipLibCheck": true,
     "outDir": "tmp",
     "typeRoots": [
       "types",

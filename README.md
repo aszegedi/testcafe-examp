@@ -11,6 +11,19 @@ Create a demo project with TestCafe to cover a cluster creation workflow with Cl
 ## Possibilities with testcafe/testcafe Docker image:
 Execute headless Google Chrome and Firefox e2e tests in Docker container with the help of [Official TestCafe Docker image.](https://hub.docker.com/r/testcafe/testcafe/)
 
+### Headless non browser-dependent testing 
+    
+Aside for Chrome, [TestCafe supports a number of browsers](http://devexpress.github.io/testcafe/documentation/using-testcafe/common-concepts/browsers/browser-support.html#officially-supported-browsers) out-of-the-box. Further, if you don’t need to test browser-dependent functionality, then you can use a headless browser.
+    
+Start by installing the [plugin](https://github.com/ryx/testcafe-browser-provider-nightmare), which is powered by [Nightmare](https://github.com/segmentio/nightmare):
+```    
+$ npm install testcafe-browser-provider-nightmare@0.0.4 --save-dev
+```    
+Introduce a new test command in [package.json](package.json):
+```    
+"test-nightmare": "node_modules/.bin/testcafe nightmare tests/test.ts",
+```
+
 ### to run tests in this container on desktop:
 1. ```export BASE_URL=your.url```
 2. ```make run```

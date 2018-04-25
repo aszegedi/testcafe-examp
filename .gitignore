@@ -11,3 +11,5 @@ results
 yarn-error.*
 node_modules
 tmp
+Vagrantfile
+/pages/loginPage.ts
