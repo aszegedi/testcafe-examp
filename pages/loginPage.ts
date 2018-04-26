@@ -14,7 +14,7 @@ export default class LoginPage {
             .typeText(this.userNameInput, this.userName)
             .typeText(this.passwordInput, this.password)
             .click(this.loginButton)
-    });
+    }, { preserveUrl: true });
 
     getLoginFormTitle() {
         return this.loginForm.textContent;

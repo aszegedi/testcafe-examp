@@ -2,12 +2,12 @@ import { BASE_URL } from '../environment/environment';
 import LoginPage from '../pages/loginPage';
 import { ClientFunction } from 'testcafe';
 
-fixture `A set of TestCafe examples`
+fixture `Cloudbreak Login examples`
     .page(BASE_URL);
 
 const page = new LoginPage();
 
-test('Cloudbreak title', async t => {
+test('Cloudbreak Title is present', async t => {
     const cloudbreakTitle = await page.getCloudbreakTitle();
 
     await t
@@ -15,7 +15,7 @@ test('Cloudbreak title', async t => {
         .expect(cloudbreakTitle()).eql('Hortonworks Cloudbreak')
 });
 
-test('Cloudbreak Login form', async t => {
+test('Cloudbreak Login form is present', async t => {
     const loginFormTitle = await page.getLoginFormTitle();
 
     await t
@@ -23,10 +23,10 @@ test('Cloudbreak Login form', async t => {
         .expect(loginFormTitle).contains('Sign In')
 });
 
-test('Cloudbreak Login', async t => {
-    const getLocation  = ClientFunction(() => document.location.href.toString());
+test('Cloudbreak Login is success', async t => {
+    const getPageUrl  = ClientFunction(() => window.location.href);
 
     await t
         .useRole(page.defaultUser)
-        .expect(getLocation()).notContains('login')
+        .expect(getPageUrl()).notContains('login')
 });

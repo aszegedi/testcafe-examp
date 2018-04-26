@@ -12,12 +12,13 @@
     "automation e2e testing"
   ],
   "scripts": {
-    "compile": "node ./node_modules/typescript/lib/tsc --pretty",
-    "watch": "node ./node_modules/typescript/lib/tsc -w",
-    "clean": "node_modules/.bin/rimraf tmp/ results/",
-    "test-live": "node_modules/.bin/testcafe-live chrome tests/test.ts -r spec xunit:results/res.xml -S -s results/screenshots",
-    "test-nightmare": "node_modules/.bin/testcafe nightmare tests/test.ts",
-    "test": "node_modules/.bin/testcafe chrome tests/test.ts -r spec xunit:results/res.xml -S -s results/screenshots"
+    "compile": "node_modules/.bin/tsc --pretty",
+    "watch": "node_modules/.bin/tsc -w",
+    "clean": "node_modules/.bin/rimraf tmp/ results/ reports/",
+    "test-live": "node_modules/.bin/testcafe-live chrome tests/*.ts -r spec xunit:results/res.xml -S -s results/screenshots",
+    "test-nightmare": "node_modules/.bin/testcafe nightmare tests/*.ts",
+    "test": "node_modules/.bin/testcafe chrome tests/*.ts -r spec xunit:results/res.xml -S -s results/screenshots",
+    "report": "node_modules/.bin/testcafe-static-analyser"
   },
   "homepage": "https://github.com/DevExpress/testcafe#readme",
   "devDependencies": {
@@ -29,6 +30,7 @@
     "testcafe-angular-selectors": "^0.3.0",
     "testcafe-browser-provider-nightmare": "^0.0.5",
     "testcafe-live": "^0.1.3",
+    "testcafe-static-analyser": "^0.2.3",
     "tmp": "^0.0.33",
     "ts-node": "^6.0.0",
     "tslib": "^1.9.0",
