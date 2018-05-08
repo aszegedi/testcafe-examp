@@ -1,32 +1,38 @@
 import { BASE_URL } from '../environment/environment';
 import LoginPage from '../pages/loginPage';
-import { ClientFunction } from 'testcafe';
+import BasePage from '../pages/basePage';
 
 fixture `Cloudbreak Login examples`
     .page(BASE_URL);
 
-const page = new LoginPage();
+const loginPage = new LoginPage();
+const basePage = new BasePage();
+
+const actualURL = basePage.getPageUrl();
+const actualTitle = basePage.getPageTitle();
 
 test('Cloudbreak Title is present', async t => {
-    const cloudbreakTitle = await page.getCloudbreakTitle();
-
     await t
         .navigateTo(BASE_URL)
-        .expect(cloudbreakTitle()).eql('Hortonworks Cloudbreak')
+        .expect(actualTitle()).eql('Hortonworks Cloudbreak')
 });
 
 test('Cloudbreak Login form is present', async t => {
-    const loginFormTitle = await page.getLoginFormTitle();
-
     await t
         .navigateTo(BASE_URL)
-        .expect(loginFormTitle).contains('Sign In')
+        .expect(loginPage.loginForm.textContent).contains('Sign In')
+});
+
+test('Cloudbreak Login is failed', async t => {
+    await loginPage.invalidLogin();
+
+    await t
+        .expect(loginPage.errorMessage.textContent).contains('Login failed: Incorrect email/password or the account is disabled.')
 });
 
 test('Cloudbreak Login is success', async t => {
-    const getPageUrl  = ClientFunction(() => window.location.href);
+    await loginPage.login();
 
     await t
-        .useRole(page.defaultUser)
-        .expect(getPageUrl()).notContains('login')
+        .expect(actualURL()).notContains('login')
 });
