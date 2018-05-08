@@ -1,4 +1,5 @@
 import { Selector } from 'testcafe';
+import { PASSWORD, USERNAME } from '../environment/environment';
 
 export default class LoginPage {
     public loginForm = Selector('div.login-wrapper form');
@@ -8,8 +9,8 @@ export default class LoginPage {
     public errorMessage = Selector('div.error');
 
     async login (t) {
-        const userName = process.env.USERNAME || 'admin@example.com';
-        const password = process.env.PASSWORD || 'cloudbreak';
+        const userName = USERNAME;
+        const password = PASSWORD;
 
         await t
             .typeText(this.userNameInput, userName)

@@ -17,12 +17,6 @@ test('Cloudbreak Title is present', async t => {
         .expect(actualTitle()).eql('Hortonworks Cloudbreak')
 });
 
-test('Cloudbreak Login form is present', async t => {
-    await t
-        .navigateTo(BASE_URL)
-        .expect(loginPage.loginForm.textContent).contains('Sign In')
-});
-
 test('Cloudbreak Login is failed', async t => {
     await loginPage.invalidLogin(t);
 

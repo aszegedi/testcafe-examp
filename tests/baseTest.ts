@@ -20,11 +20,6 @@ test('Cloudbreak Logout is success', async t => {
         .expect(actualURL()).notContains('clusters')
 });
 
-test('Cloudbreak Menu is present', async t => {
-    await t
-        .expect(basePage.menu)
-});
-
 test('Clusters menu item is present', async t => {
     await t
         .expect(basePage.menu.find('.menu-clusters').with({ visibilityCheck: true }).count).gte(1)
