@@ -1,4 +1,5 @@
 import { ClientFunction, Selector } from 'testcafe';
+import { browser } from '../utils/index';
 
 export default class BasePage {
     public logoutIcon = Selector('#logoutBtn');
@@ -6,14 +7,16 @@ export default class BasePage {
     public menu = Selector('app-menu');
 
     getPageUrl() {
-        const getPageUrl = ClientFunction(() => window.location.href);
-
-        return getPageUrl;
+        return ClientFunction(() => window.location.href);
     }
 
     getPageTitle() {
-        const getPageTitle = ClientFunction(() => document.title);
+        return ClientFunction(() => document.title);
+    }
 
-        return getPageTitle;
+    openPage(pageName: string) {
+        const name = pageName.toLowerCase();
+
+        return browser.goTo('/' + name);
     }
 }

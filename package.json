@@ -15,9 +15,9 @@
     "compile": "node_modules/.bin/tsc --pretty",
     "watch": "node_modules/.bin/tsc -w",
     "clean": "node_modules/.bin/rimraf tmp/ results/ reports/",
-    "test-live": "node_modules/.bin/testcafe-live chrome tests/*.ts -r spec xunit:results/res.xml -S -s results/screenshots",
+    "test-live": "node_modules/.bin/testcafe-live chrome tests/credentialTest.ts --debug-on-fail",
     "test-nightmare": "node_modules/.bin/testcafe nightmare tests/*.ts",
-    "test": "node_modules/.bin/testcafe chrome tests/*.ts -r spec xunit:results/res.xml -S -s results/screenshots",
+    "test": "node_modules/.bin/testcafe chrome tests/*.ts -r spec xunit:results/res.xml -S -s results/screenshots --debug-on-fail",
     "report": "node_modules/.bin/testcafe-static-analyser"
   },
   "homepage": "https://github.com/DevExpress/testcafe#readme",

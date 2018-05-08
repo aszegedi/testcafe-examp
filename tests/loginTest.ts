@@ -2,11 +2,11 @@ import { BASE_URL } from '../environment/environment';
 import LoginPage from '../pages/loginPage';
 import BasePage from '../pages/basePage';
 
-fixture `Cloudbreak Login examples`
-    .page(BASE_URL);
-
 const loginPage = new LoginPage();
 const basePage = new BasePage();
+
+fixture `Cloudbreak Login examples`
+    .page(BASE_URL);
 
 const actualURL = basePage.getPageUrl();
 const actualTitle = basePage.getPageTitle();
@@ -24,14 +24,14 @@ test('Cloudbreak Login form is present', async t => {
 });
 
 test('Cloudbreak Login is failed', async t => {
-    await loginPage.invalidLogin();
+    await loginPage.invalidLogin(t);
 
     await t
         .expect(loginPage.errorMessage.textContent).contains('Login failed: Incorrect email/password or the account is disabled.')
 });
 
 test('Cloudbreak Login is success', async t => {
-    await loginPage.login();
+    await loginPage.login(t);
 
     await t
         .expect(actualURL()).notContains('login')
