@@ -13,14 +13,14 @@ fixture `Cloudbreak Base examples`
 
 const actualURL = basePage.getPageUrl();
 
+test('Clusters menu item is present', async t => {
+    await t
+        .expect(basePage.menu.find('.menu-clusters').with({ visibilityCheck: true }).count).gte(1)
+});
+
 test('Cloudbreak Logout is success', async t => {
     await t
         .click(basePage.logoutIcon)
         .click(basePage.confirmation)
         .expect(actualURL()).notContains('clusters')
-});
-
-test('Clusters menu item is present', async t => {
-    await t
-        .expect(basePage.menu.find('.menu-clusters').with({ visibilityCheck: true }).count).gte(1)
 });

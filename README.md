@@ -1,3 +1,5 @@
+# PoC project for Cloudbreak GUI
+
 ## Background:
 1. [An Overview of JavaScript Testing in 2018](https://medium.com/welldone-software/an-overview-of-javascript-testing-in-2018-f68950900bc3)
 2. [Use React tools for better Angular apps](https://medium.com/@martin_hotell/use-react-tools-for-better-angular-apps-b0f14f3f8114)
@@ -24,11 +26,11 @@ Introduce a new test command in [package.json](package.json):
 "test-nightmare": "node_modules/.bin/testcafe nightmare tests/test.ts",
 ```
 
-### to run tests in this container on desktop:
+### Run tests in this container on desktop:
 1. ```export BASE_URL=your.url```
 2. ```make run```
 
-### with Bash script on CI:
+### Run tests in this container on CI:
 [This script](scripts/run-e2e-tests.sh) is optimized for CI execution. So the Docker container starts only with `-i ` operator.
 
 >  * -t  : Allocate a pseudo-tty
@@ -57,3 +59,35 @@ Introduce a new test command in [package.json](package.json):
 |Additional Features|Angular application support|CSS regression testing using ‘webdrivercss’ npm package.|–|Plug-in Free Testing (after install, immediately functional), nice async/await syntax|
 |Licenses|MIT|MIT|MIT|MIT|
 |Dependencies|15|21|10|62|
+
+# Structure
+![](utils/images/Cloud%20GUI%20Test%20Structure.png)
+
+## Page Object Pattern
+
+> "now possible to build up large test suites using this pattern. There are no additional packages required to create page objects. It turns out that Object.create provides all necessary features we need:
+>
+> * inheritance between page objects
+> * lazy loading of elements and
+> * encapsulation of methods and actions
+>
+> "The goal behind page objects is to abstract any page information away from the actual tests. Ideally you should store all selectors or specific instructions that are unique for a certain page in a page object, so that you still can run your test after you’ve completely redesigned your page."
+
+## Rule of Thumb
+1. Define page selectors in getter functions
+2. Define page actions in properties and methods
+
+> "A page object wraps an HTML page, or fragment, with an application-specific API, allowing you to manipulate page elements without digging around in the HTML."
+> The basic rule of thumb:
+>
+> 3. It should allow to do anything and see anything that a human can
+> 4. It should also provide an interface that's easy to access and modify
+> 5. It should hide the underlying widgetry
+> 6. It should have accessor methods that take and return your values and commands
+>   * check boxes should use booleans
+>   * buttons should be represented by action oriented method names
+>
+> The page object should encapsulate the mechanics required to find and manipulate the data in the gui control itself." by [Martin Fowler](http://martinfowler.com/bliki/PageObject.html)
+
+> "From the structural side it makes sense to separate spec files and page objects and put them into different directories."…"This is the basic principle of how to write page objects. Note that you can build up way more complex page object structures than this. For example have specific page objects for modals or split up a huge page object into different sections objects that inherit from the main page object. The pattern gives you really a lot of opportunities to encapsulate page information from your actual tests, which is important to keep your test suite structured and clear in times where the project and number of tests grows." by [WebDriverIO](http://webdriver.io/guide/testrunner/pageobjects.html)
+

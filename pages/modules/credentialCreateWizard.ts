@@ -1,4 +1,4 @@
-import { ClientFunction, Selector } from 'testcafe';
+import { Selector } from 'testcafe';
 
 export default class CredentialCreateWizard {
     public createCredentialApp = Selector('app-get-started');
