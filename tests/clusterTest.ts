@@ -4,7 +4,6 @@ import LoginPage from '../pages/loginPage';
 import ClusterCreateWizard from '../pages/modules/clusterCreateWizard';
 import ClusterPage from '../pages/clusterPage';
 import ClusterDetails from '../pages/modules/clusterDetails';
-import { Selector } from 'testcafe';
 
 const basePage = new BasePage();
 const loginPage = new LoginPage();
@@ -52,8 +51,6 @@ test('New Azure cluster is terminating', async t => {
 });
 
 test('New Azure cluster is terminated', async t => {
-    const widget = await Selector('a[data-stack-name="' + clusterName + '"]').exists;
-
     await t
-        .expect(widget).notOk({ timeout: 600000 })
+        .expect(clusterPage.getWidget(clusterName)).eql(0, 'check cluster widget has been removed', { timeout: 600000 })
 });

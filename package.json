@@ -16,9 +16,9 @@
     "watch": "node_modules/.bin/tsc -w",
     "clean": "node_modules/.bin/rimraf tmp/ results/ result.xml",
     "test-live": "node_modules/.bin/testcafe-live chrome tests/credentialTest.ts",
-    "test-headless": "node_modules/.bin/testcafe chrome:headless tests/loginTest.ts",
+    "test-headless": "node_modules/.bin/testcafe chrome:headless tests/loginTest.ts -r xunit:result.xml",
     "test": "node_modules/.bin/testcafe chrome tests/clusterTest.ts -r spec,xunit:result.xml -S -s results/screenshots --debug-on-fail",
-    "test-xmlreport": "node_modules/.bin/testcafe chrome tests/loginTest.ts -r xunit:report.xml -S -s results/screenshots",
+    "test-xmlreport": "node_modules/.bin/testcafe chrome tests/*.ts -r xunit:result.xml -S -s results/screenshots",
     "test-htmlreport": "HTML_REPORT_PATH=results node_modules/.bin/testcafe chrome tests/*.ts -r html-testrail"
   },
   "homepage": "https://github.com/DevExpress/testcafe#readme",
