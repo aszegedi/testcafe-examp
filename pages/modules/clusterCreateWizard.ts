@@ -1,7 +1,17 @@
-import { Selector, t } from 'testcafe';
+import { Selector } from 'testcafe';
 
 export default class ClusterCreateWizard {
-    public templateSwitch: any = Selector("div[class='setup-wizard-title-bar'] i");
+    public templateSwitch: any = Selector('app-basic-advanced-toggler i');
+    public credentialSelector: any = Selector('[placeholder="Please select credential"]');
+    public clusterNameField: any = Selector('#clusterName');
+    public baseImageTab = Selector('mat-radio-button').withText('Base Image');
+    public nextButton = Selector('button').withText('Next');
+    public userField = Selector('input[formcontrolname="username"]');
+    public passwordField = Selector('input[formcontrolname="password"]');
+    public confirmPasswordField = Selector('input[formcontrolname="passwordConfirmation"]');
+    public sshTextarea = Selector('[formcontrolname="publicKey"]');
+    public sshSelector = Selector('#cb-cluster-create-security-ssh-key-name-select');
+    public createButton = Selector('.btn.btn-primary.text-uppercase');
 
     async setAdvancedTemplate(t) {
         await t
@@ -22,31 +32,51 @@ export default class ClusterCreateWizard {
         securityGroupWorker?: string,
         securityGroupCompute?: string
     ) {
-        const credentialSelector = Selector("mat-select[placeholder='Please select credential']");
-        const clusterNameField = Selector('#clusterName');
-        const baseImageTab = Selector('mat-radio-button').withText('Base Image');
-        const nextButton = Selector('button').withText('Next');
-        const userField = Selector('input[formcontrolname="username"]');
-        const passwordField = Selector('input[formcontrolname="password"]');
-        const confirmPasswordField = Selector('input[formcontrolname="passwordConfirmation"]');
-        const sshSelector = Selector('#cb-cluster-create-security-ssh-key-name-select');
-        const createButton = Selector('.btn.btn-primary.text-uppercase');
-
         await t
-            .click(credentialSelector)
+            .click(this.credentialSelector)
             .click(Selector('mat-option').withText(credentialName))
-            .typeText(clusterNameField, clusterName, { replace: true })
-            .click(baseImageTab)
-            .click(nextButton)
-            .click(nextButton)
-            .click(nextButton)
-            .click(nextButton)
-            .click(nextButton)
-            .typeText(userField, user, { replace: true })
-            .typeText(passwordField, password, { replace: true })
-            .typeText(confirmPasswordField, password, { replace: true })
-            .click(sshSelector)
+            .typeText(this.clusterNameField, clusterName, { replace: true })
+            .click(this.baseImageTab)
+            .click(this.nextButton, { speed: 0.5 })
+            .click(this.nextButton, { speed: 0.5 })
+            .click(this.nextButton, { speed: 0.5 })
+            .click(this.nextButton, { speed: 0.5 })
+            .click(this.nextButton, { speed: 0.5 })
+            .typeText(this.userField, user, { replace: true })
+            .typeText(this.passwordField, password, { replace: true })
+            .typeText(this.confirmPasswordField, password, { replace: true })
+            .click(this.sshSelector)
             .click(Selector('mat-option').withText(sshKeyName))
-            .click(createButton);
+            .click(this.createButton);
+    }
+
+    async createAzureCluster(
+        credentialName: string,
+        clusterName: string,
+        user: string,
+        password: string,
+        sshKey: string,
+        t,
+        network?: string,
+        subnet?: string,
+        securityGroupMaster?: string,
+        securityGroupWorker?: string,
+        securityGroupCompute?: string
+    ) {
+        await t
+            .click(this.credentialSelector)
+            .click(Selector('mat-option').withText(credentialName))
+            .typeText(this.clusterNameField, clusterName, { replace: true })
+            .click(this.baseImageTab)
+            .click(this.nextButton, { speed: 0.5 })
+            .click(this.nextButton, { speed: 0.5 })
+            .click(this.nextButton, { speed: 0.5 })
+            .click(this.nextButton, { speed: 0.5 })
+            .click(this.nextButton, { speed: 0.5 })
+            .typeText(this.userField, user, { replace: true })
+            .typeText(this.passwordField, password, { replace: true })
+            .typeText(this.confirmPasswordField, password, { replace: true })
+            .typeText(this.sshTextarea, sshKey, { speed: 0.5 })
+            .click(this.createButton);
     }
 }

@@ -16,7 +16,7 @@ run:
                     --env-file $(ENVFILE) \
                     -v $(PWD):/project \
                     -v /dev/shm:/dev/shm \
-                    testcafe/testcafe all /project/tests/test.ts
+                    testcafe/testcafe firefox /project/tests/clusterTest.ts
                     RESULT=$?
 
 .PHONY:

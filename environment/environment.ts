@@ -11,3 +11,4 @@ export const OS_APIFACING = process.env.OS_APIFACING || 'internal';
 export const AMBARI_USER = process.env.AMBARI_USER || 'admin';
 export const AMBARI_PASSWORD = process.env.AMBARI_PASSWORD || 'admin123!@#';
 export const SSH_KEY_NAME = process.env.SSH_KEY_NAME || 'seq-master';
+export const SSH_KEY = process.env.SSH_KEY || 'ssh-rsa AAAAB3';

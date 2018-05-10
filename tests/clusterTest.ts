@@ -1,13 +1,22 @@
-import { AMBARI_PASSWORD, AMBARI_USER, BASE_URL, SSH_KEY_NAME } from '../environment/environment';
+import { AMBARI_PASSWORD, AMBARI_USER, BASE_URL, SSH_KEY } from '../environment/environment';
 import BasePage from '../pages/BasePage';
 import LoginPage from '../pages/loginPage';
 import ClusterCreateWizard from '../pages/modules/clusterCreateWizard';
 import ClusterPage from '../pages/clusterPage';
+import ClusterDetails from '../pages/modules/clusterDetails';
+import { Selector } from 'testcafe';
 
 const basePage = new BasePage();
 const loginPage = new LoginPage();
 const clusterPage = new ClusterPage();
 const wizard = new ClusterCreateWizard();
+const details = new ClusterDetails();
+
+const credentialName = 'azure';
+const clusterName = 'azure-cluster';
+const user = AMBARI_USER;
+const password = AMBARI_PASSWORD;
+const sshKey = SSH_KEY;
 
 fixture `Cloudbreak Cluster examples`
     .page(BASE_URL)
@@ -15,31 +24,36 @@ fixture `Cloudbreak Cluster examples`
         await loginPage.login(ctx);
     });
 
-test('Create new OpenStack cluster with Advanced Template is success', async t => {
-    const credentialName = 'openstack';
-    const clusterName = 'openstack-cluster';
-    const user = AMBARI_USER;
-    const password = AMBARI_PASSWORD;
-    const sshKeyName = SSH_KEY_NAME;
-
+test('Create new Azure cluster with Advanced Template is success', async t => {
     await basePage.openPage('clusters/ref/create');
 
     await wizard.setAdvancedTemplate(t);
 
     await t
-        .expect(wizard.createOpenStackCluster(credentialName, clusterName, user, password, sshKeyName, t)).ok()
+        .expect(wizard.createAzureCluster(credentialName, clusterName, user, password, sshKey, t)).ok()
 });
 
-test('New OpenStack cluster is launched', async t => {
-    await basePage.openPage('clusters');
-
+test('New Azure cluster is launched', async t => {
     await t
-        .expect(clusterPage.getWidgetStatus('openstack-cluster')).notContains('in progress', 'check cluster is not in progress status', { timeout: 600000 })
+        .expect(clusterPage.getWidgetStatus(clusterName)).notContains('in progress', 'check cluster is not in progress status', { timeout: 1200000 })
 });
 
-test('New OpenStack cluster is running', async t => {
-    await basePage.openPage('clusters');
+test('New Azure cluster is running', async t => {
+    await t
+        .expect(clusterPage.getWidgetStatus(clusterName)).contains('Running', 'check cluster is in running status')
+});
+
+test('New Azure cluster is terminating', async t => {
+    await clusterPage.openClusterDetails(clusterName, t);
+    await details.forceTerminateCluster(t);
 
     await t
-        .expect(clusterPage.getWidgetStatus('openstack-cluster')).notContains('running', 'check cluster is in running status')
+        .expect(clusterPage.getWidgetStatus(clusterName)).contains('Terminating', 'check cluster is in terminating status')
+});
+
+test('New Azure cluster is terminated', async t => {
+    const widget = await Selector('a[data-stack-name="' + clusterName + '"]').exists;
+
+    await t
+        .expect(widget).notOk({ timeout: 600000 })
 });

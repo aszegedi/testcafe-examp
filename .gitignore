@@ -8,7 +8,7 @@
 out
 gen
 results
-reports
+result.xml
 yarn-error.*
 node_modules
 tmp

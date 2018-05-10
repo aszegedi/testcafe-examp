@@ -1,36 +1,42 @@
 # PoC project for Cloudbreak GUI
 
-## Background:
+## Background
 1. [An Overview of JavaScript Testing in 2018](https://medium.com/welldone-software/an-overview-of-javascript-testing-in-2018-f68950900bc3)
 2. [Use React tools for better Angular apps](https://medium.com/@martin_hotell/use-react-tools-for-better-angular-apps-b0f14f3f8114)
 3. [UI Test Automation Frameworks Showdown: TestCafé versus Nightwatch.js](http://www.pqatesting.com/our_ideas/blog/u)
 4. [End-to-End Testing with TestCafe](http://mherman.org/testcafe-example/#1)
 5. [TestCafe: Easier End-to-end Web App Testing with Node.js](https://www.sitepoint.com/testcafe-easier-end-end-web-app-testing-node-js/)
 
-## Main Goal:
+## Main Goal
 Create a demo project with TestCafe to cover a cluster creation workflow with Cloudbreak GUI.
 
-## Possibilities with testcafe/testcafe Docker image:
-Execute headless Google Chrome and Firefox e2e tests in Docker container with the help of [Official TestCafe Docker image.](https://hub.docker.com/r/testcafe/testcafe/)
+## Run tests
+Test command in [package.json](package.json):
+```    
+"test": "node_modules/.bin/testcafe chrome tests/*.ts -r spec,xunit:result.xml -S -s results/screenshots --debug-on-fail",
+```
+1. Set the needed environment variables for [environment](environment/environment.ts) file
+2. ```yarn test```
 
-### Headless non browser-dependent testing 
+## Headless non browser-dependent testing 
     
 Aside for Chrome, [TestCafe supports a number of browsers](http://devexpress.github.io/testcafe/documentation/using-testcafe/common-concepts/browsers/browser-support.html#officially-supported-browsers) out-of-the-box. Further, if you don’t need to test browser-dependent functionality, then you can use a headless browser.
     
-Start by installing the [plugin](https://github.com/ryx/testcafe-browser-provider-nightmare), which is powered by [Nightmare](https://github.com/segmentio/nightmare):
+[Testing in Headless Mode](http://devexpress.github.io/testcafe/documentation/using-testcafe/common-concepts/browsers/testing-in-headless-mode.html) I've introduced a new test command in [package.json](package.json):
 ```    
-$ npm install testcafe-browser-provider-nightmare@0.0.4 --save-dev
-```    
-Introduce a new test command in [package.json](package.json):
-```    
-"test-nightmare": "node_modules/.bin/testcafe nightmare tests/test.ts",
+"test-headless": "node_modules/.bin/testcafe chrome:headless tests/loginTest.ts",
 ```
+1. Set the needed environment variables for [environment](environment/environment.ts) file
+2. ```yarn test-headless```
 
-### Run tests in this container on desktop:
+## Possibilities with testcafe/testcafe Docker image
+Execute headless Google Chrome and Firefox e2e tests in Docker container with the help of [Official TestCafe Docker image.](https://hub.docker.com/r/testcafe/testcafe/)
+
+### Run tests in this container on desktop
 1. Set the needed environment variables for [environment](environment/environment.ts) file
 2. ```make run```
 
-### Run tests in this container on CI:
+### Run tests in this container on CI
 [This script](scripts/run-e2e-tests.sh) is optimized for CI execution. So the Docker container starts only with `-i ` operator.
 
 >  * -t  : Allocate a pseudo-tty
@@ -38,7 +44,7 @@ Introduce a new test command in [package.json](package.json):
 >
 [Docker run reference](https://docs.docker.com/engine/reference/run/)
 
-## Comparison (brief list from several articles):
+## Comparison (brief list from several articles)
 
 |Categories|Protractor|WebDriverIO|Night Watch|TestCafe|
 |:---------|:--------:|:---------:|:---------:|:------:|
