@@ -27,7 +27,7 @@ Introduce a new test command in [package.json](package.json):
 ```
 
 ### Run tests in this container on desktop:
-1. ```export BASE_URL=your.url```
+1. Set the needed environment variables for [environment](environment/environment.ts) file
 2. ```make run```
 
 ### Run tests in this container on CI:
@@ -36,7 +36,7 @@ Introduce a new test command in [package.json](package.json):
 >  * -t  : Allocate a pseudo-tty
 >  * -i  : Keep STDIN open even if not attached
 >
->  [Docker run reference](from https://docs.docker.com/engine/reference/run/)
+[Docker run reference](https://docs.docker.com/engine/reference/run/)
 
 ## Comparison (brief list from several articles):
 
@@ -61,33 +61,33 @@ Introduce a new test command in [package.json](package.json):
 |Dependencies|15|21|10|62|
 
 # Structure
-![](utils/images/Cloud%20GUI%20Test%20Structure.png)
+![](utils/images/Cloud%20Page%20Objects.png)
 
 ## Page Object Pattern
+[Page object is a design pattern](https://www.seleniumhq.org/docs/06_test_design_considerations.jsp#page-object-design-pattern) that can be implemented as a Selenium best practices. The functionality classes (PageObjects) in this design represent a logical relationship between the pages of the application. There are other design patterns that also may be used in testing. Some use a [Page Factory](https://github.com/SeleniumHQ/selenium/wiki/PageFactory) for instantiating their page objects. Discussing all of these is beyond the scope of this introduction. So I've just collected some basic thoughts and principles here for summary: 
 
-> "now possible to build up large test suites using this pattern. There are no additional packages required to create page objects. It turns out that Object.create provides all necessary features we need:
+> "A page object wraps an HTML page, or fragment, with an application-specific API, allowing you to manipulate page elements without digging around in the HTML." by [Martin Fowler](http://martinfowler.com/bliki/PageObject.html)
+
+> "By introducing the “elements as first class citizens” principle it is now possible to build up large test suites using this pattern. There are no additional packages required to create page objects. It turns out that ```Object.create``` provides all necessary features we need:
 >
 > * inheritance between page objects
 > * lazy loading of elements and
 > * encapsulation of methods and actions
 >
-> "The goal behind page objects is to abstract any page information away from the actual tests. Ideally you should store all selectors or specific instructions that are unique for a certain page in a page object, so that you still can run your test after you’ve completely redesigned your page."
+> The goal behind page objects is to abstract any page information away from the actual tests. Ideally you should store all selectors or specific instructions that are unique for a certain page in a page object, so that you still can run your test after you’ve completely redesigned your page." by [WebDriverIO](http://webdriver.io/guide/testrunner/pageobjects.html)
 
 ## Rule of Thumb
-1. Define page selectors in getter functions
-2. Define page actions in properties and methods
-
-> "A page object wraps an HTML page, or fragment, with an application-specific API, allowing you to manipulate page elements without digging around in the HTML."
-> The basic rule of thumb:
+> "The basic rule of thumb:
 >
-> 3. It should allow to do anything and see anything that a human can
-> 4. It should also provide an interface that's easy to access and modify
-> 5. It should hide the underlying widgetry
-> 6. It should have accessor methods that take and return your values and commands
+> 1. It should allow to do anything and see anything that a human can
+> 2. It should also provide an interface that's easy to access and modify
+> 3. It should hide the underlying widgetry
+> 4. It should have accessor methods that take and return your values and commands
 >   * check boxes should use booleans
 >   * buttons should be represented by action oriented method names
 >
 > The page object should encapsulate the mechanics required to find and manipulate the data in the gui control itself." by [Martin Fowler](http://martinfowler.com/bliki/PageObject.html)
 
-> "From the structural side it makes sense to separate spec files and page objects and put them into different directories."…"This is the basic principle of how to write page objects. Note that you can build up way more complex page object structures than this. For example have specific page objects for modals or split up a huge page object into different sections objects that inherit from the main page object. The pattern gives you really a lot of opportunities to encapsulate page information from your actual tests, which is important to keep your test suite structured and clear in times where the project and number of tests grows." by [WebDriverIO](http://webdriver.io/guide/testrunner/pageobjects.html)
+> "From the structural side it makes sense to separate spec files and page objects and put them into different directories."...
+> ..."Note that you can build up way more complex page object structures than this. For example have specific page objects for modals or split up a huge page object into different objects that inherit from the main page object. The pattern gives you really a lot of opportunities to encapsulate page information from your actual tests, which is important to keep your test suites structured and clear in times where the project and number of tests grows." by [WebDriverIO](http://webdriver.io/guide/testrunner/pageobjects.html)
 
