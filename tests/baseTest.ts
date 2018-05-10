@@ -15,7 +15,7 @@ const actualURL = basePage.getPageUrl();
 
 test('Clusters menu item is present', async t => {
     await t
-        .expect(basePage.menu.find('.menu-clusters').with({ visibilityCheck: true }).count).gte(1)
+        .expect(basePage.isMenuItemPresent('.menu-clusters')).gte(1)
 });
 
 test('Cloudbreak Logout is success', async t => {

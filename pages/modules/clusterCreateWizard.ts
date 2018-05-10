@@ -30,7 +30,7 @@ export default class ClusterCreateWizard {
         const passwordField = Selector('input[formcontrolname="password"]');
         const confirmPasswordField = Selector('input[formcontrolname="passwordConfirmation"]');
         const sshSelector = Selector('#cb-cluster-create-security-ssh-key-name-select');
-        const createButton = Selector('button').withText('Create cluster');
+        const createButton = Selector('.btn.btn-primary.text-uppercase');
 
         await t
             .click(credentialSelector)

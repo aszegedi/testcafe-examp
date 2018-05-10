@@ -3,7 +3,7 @@ import { browser } from '../utils/index';
 
 export default class BasePage {
     public logoutIcon = Selector('#logoutBtn');
-    public confirmation = Selector('button[data-qa="confirmation-yes"]');
+    public confirmation = Selector('[data-qa="confirmation-yes"]');
     public menu = Selector('app-menu');
 
     getPageUrl() {
@@ -18,5 +18,9 @@ export default class BasePage {
         const name = pageName.toLowerCase();
 
         return browser.goTo('/' + name);
+    }
+
+    isMenuItemPresent(menuItemClass: string) {
+        return this.menu.find(menuItemClass).with({ visibilityCheck: true }).count;
     }
 }
