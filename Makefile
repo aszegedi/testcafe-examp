@@ -14,9 +14,9 @@ run:
                     --net=host \
                     --name e2e-runner \
                     --env-file $(ENVFILE) \
-                    -v $(PWD):/project \
+                    -v $(PWD):/testcafe/project \
                     -v /dev/shm:/dev/shm \
-                    testcafe/testcafe firefox /project/tests/clusterTest.ts
+                    testcafe/testcafe chromium /testcafe/project/tests/*.ts -r spec,xunit:/testcafe/project/result.xml -S -s /testcafe/project/results/screenshots
                     RESULT=$?
 
 .PHONY:
