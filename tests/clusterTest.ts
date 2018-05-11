@@ -1,4 +1,4 @@
-import { AMBARI_PASSWORD, AMBARI_USER, BASE_URL, SSH_KEY } from '../environment/environment';
+import { AMBARI_PASSWORD, AMBARI_USER, BASE_URL, SSH_KEY_NAME } from '../environment/environment';
 import BasePage from '../pages/BasePage';
 import LoginPage from '../pages/loginPage';
 import ClusterCreateWizard from '../pages/modules/clusterCreateWizard';
@@ -11,11 +11,11 @@ const clusterPage = new ClusterPage();
 const wizard = new ClusterCreateWizard();
 const details = new ClusterDetails();
 
-const credentialName = 'azure';
-const clusterName = 'azure-cluster';
+const credentialName = 'autotesting-clusters-os';
+const clusterName = 'testcafe-os-cluster';
 const user = AMBARI_USER;
 const password = AMBARI_PASSWORD;
-const sshKey = SSH_KEY;
+const sshKeyName = SSH_KEY_NAME;
 
 fixture `Cloudbreak Cluster examples`
     .page(BASE_URL)
@@ -23,22 +23,22 @@ fixture `Cloudbreak Cluster examples`
         await loginPage.login(ctx);
     });
 
-test('Create new Azure cluster with Advanced Template has been done successfully', async t => {
+test('Create new cluster with Advanced Template has been done successfully', async t => {
     await basePage.openPage('clusters/ref/create');
 
     await wizard.setAdvancedTemplate(t);
 
     await t
-        .expect(wizard.createAzureCluster(credentialName, clusterName, user, password, sshKey, t)).ok()
+        .expect(wizard.createOpenStackCluster(credentialName, clusterName, user, password, sshKeyName, t)).ok()
 });
 
-test('New Azure cluster has been started successfully', async t => {
+test('New cluster has been started successfully', async t => {
     await t
         .expect(clusterPage.getWidgetStatus(clusterName)).notContains('in progress', 'check cluster widget does not show in progress status', { timeout: 1600000 })
         .expect(clusterPage.getWidgetStatus(clusterName)).contains('Running', 'check cluster widget shows running status')
 });
 
-test('New Azure cluster is terminated successfully', async t => {
+test('New cluster is terminated successfully', async t => {
     await clusterPage.openClusterDetails(clusterName, t);
     await details.forceTerminateCluster(t);
 

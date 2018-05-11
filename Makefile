@@ -6,18 +6,20 @@ refresh-image:
 run-on-jenkins:
 		./scripts/e2e-gui-test.sh
 
-run:
+build:
+		docker build -t aszegedi/testcafe .
 
+run:
 		docker run -it \
-                    --privileged \
-                    --rm \
-                    --net=host \
-                    --name e2e-runner \
-                    --env-file $(ENVFILE) \
-                    -v $(PWD):/testcafe/project \
-                    -v /dev/shm:/dev/shm \
-                    testcafe/testcafe chromium /testcafe/project/tests/*.ts -r spec,xunit:/testcafe/project/result.xml -S -s /testcafe/project/results/screenshots
-                    RESULT=$?
+            --privileged \
+            --rm \
+            --net=host \
+            --name testcafe-e2e-runner \
+            --env-file $(ENVFILE) \
+            -v $(PWD):/testcafe/project \
+            -v /dev/shm:/dev/shm \
+            aszegedi/testcafe chromium /testcafe/project/tests/loginTest.ts -r spec,xunit:/testcafe/project/result.xml -S -s /testcafe/project/results/screenshots
+            RESULT=$?
 
 .PHONY:
 		run

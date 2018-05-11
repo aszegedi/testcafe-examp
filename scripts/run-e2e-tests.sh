@@ -3,10 +3,12 @@
 : ${BASE_URL:? required}
 : ${ENVFILE:=./utils/testenvironment}
 
-echo "Refresh the Test Runner Docker image"
-docker pull testcafe/testcafe
+if [[ "$(docker images -q aszegedi/testcafe 2> /dev/null)" == "" ]]; then
+ echo "Build the Test Runner Docker image"
+ docker build -t aszegedi/testcafe .
+fi
 
-export TEST_CONTAINER_NAME=e2e-runner
+export TEST_CONTAINER_NAME=testcafe-e2e-runner
 
 echo "Checking stopped containers"
 if [[ -n "$(docker ps -a -f status=exited -f status=dead -q)" ]]; then
@@ -28,15 +30,19 @@ if [[ $BASE_URL_RESPONSE -ne 200 ]]; then
     echo $BASE_URL " Web GUI is not accessible!"
     RESULT=1
 else
+    echo "Local path to volume "$(pwd)
     docker run -i \
     --privileged \
     --rm \
+    --net=host \
     --name $TEST_CONTAINER_NAME \
     --env-file $ENVFILE \
-    -v $(pwd):/project \
+    -v $(pwd):/testcafe/project \
     -v /dev/shm:/dev/shm \
-    testcafe/testcafe all /project/tests/test.ts
+    aszegedi/testcafe chromium /testcafe/project/tests/*.ts -r spec,xunit:/testcafe/project/result.xml -S -s /testcafe/project/results/screenshots
     RESULT=$?
 fi
+
+sudo chown -R jenkins .
 
 exit $RESULT
