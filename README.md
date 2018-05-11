@@ -89,8 +89,8 @@ Execute headless Google Chrome and Firefox e2e tests in Docker container with th
 > 2. It should also provide an interface that's easy to access and modify
 > 3. It should hide the underlying widgetry
 > 4. It should have accessor methods that take and return your values and commands
->   * check boxes should use booleans
->   * buttons should be represented by action oriented method names
+>       * check boxes should use booleans
+>       * buttons should be represented by action oriented method names
 >
 > The page object should encapsulate the mechanics required to find and manipulate the data in the gui control itself." by [Martin Fowler](http://martinfowler.com/bliki/PageObject.html)
 
