@@ -15,14 +15,7 @@ fixture `Cloudbreak Credential examples`
 
 const actualURL = basePage.getPageUrl();
 
-test('Cloudbreak Credentials page is opened', async t => {
-    await basePage.openPage('Credentials');
-
-    await t
-        .expect(actualURL()).contains('credentials')
-});
-
-test('Create new OpenStack credential is success', async t => {
+test('New OpenStack credential has been created successfully', async t => {
     const credentialName = 'autotesting-os';
     const keystoneVersion = 'v2';
     const user = OS_USERNAME;
@@ -36,5 +29,5 @@ test('Create new OpenStack credential is success', async t => {
     await wizard.selectProvider('openstack', t);
 
     await t
-        .expect(wizard.createOpenStackCredential(keystoneVersion, credentialName, user, password, tenantName, endpoint, apiFacing, t)).ok()
+        .expect(wizard.createOpenStackCredential(keystoneVersion, credentialName, user, password, tenantName, endpoint, apiFacing, t)).ok('check OpenStack V2 credential has been created with no error')
 });

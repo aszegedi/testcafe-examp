@@ -15,12 +15,12 @@ const actualURL = basePage.getPageUrl();
 
 test('Clusters menu item is present', async t => {
     await t
-        .expect(basePage.isMenuItemPresent('.menu-clusters')).gte(1)
+        .expect(basePage.isMenuItemPresent('.menu-clusters')).gte(1, 'check Clusters menu is visible')
 });
 
-test('Cloudbreak Logout is success', async t => {
+test('Cloudbreak Logout has been done successfully', async t => {
     await t
         .click(basePage.logoutIcon)
         .click(basePage.confirmation)
-        .expect(actualURL()).notContains('clusters')
+        .expect(actualURL()).notContains('clusters', 'check actual URL does not contain "clusters"')
 });

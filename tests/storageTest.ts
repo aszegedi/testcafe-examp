@@ -7,9 +7,9 @@ const localStorageGet = ClientFunction(key => localStorage.getItem(key));
 fixture `Cloudbreak Local Storage examples`
     .page(BASE_URL);
 
-test ('Local Storage is updated', async t => {
+test ('Cloudbreak GUI local storage has been updated successfully', async t => {
     await localStorageSet('teszt', 'elek');
 
     await t
-        .expect(localStorageGet('teszt')).eql('elek');
+        .expect(localStorageGet('teszt')).eql('elek', 'check Local Storage contains "elek" value of "teszt" key');
 });

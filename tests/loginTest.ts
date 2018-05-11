@@ -11,22 +11,22 @@ fixture `Cloudbreak Login examples`
 const actualURL = basePage.getPageUrl();
 const actualTitle = basePage.getPageTitle();
 
-test('Cloudbreak Title is present', async t => {
+test('Cloudbreak page Title is present', async t => {
     await t
         .navigateTo(BASE_URL)
-        .expect(actualTitle()).eql('Hortonworks Cloudbreak')
+        .expect(actualTitle()).eql('Hortonworks Cloudbreak', 'check Cloudbreak page title is "Hortonworks Cloud"')
 });
 
-test('Cloudbreak Login is failed', async t => {
+test('Cloudbreak Login has been failed for invalid user credentials', async t => {
     await loginPage.invalidLogin(t);
 
     await t
         .expect(loginPage.errorMessage.textContent).contains('Login failed: Incorrect email/password or the account is disabled.')
 });
 
-test('Cloudbreak Login is success', async t => {
+test('Valid Cloudbreak user has been logged in successfully ', async t => {
     await loginPage.login(t);
 
     await t
-        .expect(actualURL()).notContains('login')
+        .expect(actualURL()).notContains('login', 'check actual URL does not contain "login"')
 });

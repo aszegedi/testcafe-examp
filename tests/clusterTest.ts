@@ -23,7 +23,7 @@ fixture `Cloudbreak Cluster examples`
         await loginPage.login(ctx);
     });
 
-test('Create new Azure cluster with Advanced Template is success', async t => {
+test('Create new Azure cluster with Advanced Template has been done successfully', async t => {
     await basePage.openPage('clusters/ref/create');
 
     await wizard.setAdvancedTemplate(t);
@@ -32,25 +32,17 @@ test('Create new Azure cluster with Advanced Template is success', async t => {
         .expect(wizard.createAzureCluster(credentialName, clusterName, user, password, sshKey, t)).ok()
 });
 
-test('New Azure cluster is launched', async t => {
+test('New Azure cluster has been started successfully', async t => {
     await t
-        .expect(clusterPage.getWidgetStatus(clusterName)).notContains('in progress', 'check cluster is not in progress status', { timeout: 1200000 })
+        .expect(clusterPage.getWidgetStatus(clusterName)).notContains('in progress', 'check cluster widget does not show in progress status', { timeout: 1600000 })
+        .expect(clusterPage.getWidgetStatus(clusterName)).contains('Running', 'check cluster widget shows running status')
 });
 
-test('New Azure cluster is running', async t => {
-    await t
-        .expect(clusterPage.getWidgetStatus(clusterName)).contains('Running', 'check cluster is in running status')
-});
-
-test('New Azure cluster is terminating', async t => {
+test('New Azure cluster is terminated successfully', async t => {
     await clusterPage.openClusterDetails(clusterName, t);
     await details.forceTerminateCluster(t);
 
     await t
-        .expect(clusterPage.getWidgetStatus(clusterName)).contains('Terminating', 'check cluster is in terminating status')
-});
-
-test('New Azure cluster is terminated', async t => {
-    await t
+        .expect(clusterPage.getWidgetStatus(clusterName)).contains('Terminating', 'check cluster widget shows terminating status')
         .expect(clusterPage.getWidget(clusterName)).eql(0, 'check cluster widget has been removed', { timeout: 600000 })
 });
