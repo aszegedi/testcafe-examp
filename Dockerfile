@@ -7,8 +7,7 @@ RUN yarn global add \
     testcafe \
     typescript && \
     npm update && \
-    rm -rf /tmp/* && \
-    adduser -D user
+    rm -rf /tmp/*
 
 COPY /scripts/testcafe-docker.sh /scripts/testcafe-docker.sh
 RUN chmod +x /scripts/testcafe-docker.sh
@@ -16,8 +15,6 @@ RUN chmod +x /scripts/testcafe-docker.sh
 WORKDIR /testcafe/
 RUN chmod -Rf 777 .
 ENV HOME=/testcafe/project
-
-USER user
 
 EXPOSE 1337 1338
 
