@@ -1,14 +1,14 @@
 ENVFILE=utils/testenvironment
 
 refresh-image:
-				docker pull testcafe/testcafe
+		docker pull testcafe/testcafe
 
 run-on-jenkins:
-				./scripts/e2e-gui-test.sh
+		./scripts/e2e-gui-test.sh
 
 run:
 
-				docker run -it \
+		docker run -it \
                     --privileged \
                     --rm \
                     --net=host \
@@ -20,4 +20,4 @@ run:
                     RESULT=$?
 
 .PHONY:
-				run
+		run
