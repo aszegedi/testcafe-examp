@@ -1,5 +1,5 @@
 import { BASE_URL, OS_APIFACING, OS_AUTH_URL, OS_PASSWORD, OS_TENANT_NAME, OS_USERNAME } from '../environment/environment';
-import BasePage from '../pages/BasePage';
+import BasePage from '../pages/basePage';
 import LoginPage from '../pages/loginPage';
 import CredentialCreateWizard from '../pages/modules/credentialCreateWizard';
 

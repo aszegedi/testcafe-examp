@@ -1,5 +1,5 @@
 import { AMBARI_PASSWORD, AMBARI_USER, BASE_URL, SSH_KEY_NAME } from '../environment/environment';
-import BasePage from '../pages/BasePage';
+import BasePage from '../pages/basePage';
 import LoginPage from '../pages/loginPage';
 import ClusterCreateWizard from '../pages/modules/clusterCreateWizard';
 import ClusterPage from '../pages/clusterPage';

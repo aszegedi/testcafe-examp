@@ -1,5 +1,5 @@
 import { BASE_URL } from '../environment/environment';
-import BasePage from '../pages/BasePage';
+import BasePage from '../pages/basePage';
 import LoginPage from '../pages/loginPage';
 
 const basePage = new BasePage();
