@@ -30,7 +30,20 @@ if [[ $BASE_URL_RESPONSE -ne 200 ]]; then
     echo $BASE_URL " Web GUI is not accessible!"
     RESULT=1
 else
-    echo "Local path to volume "$(pwd)
+    echo "BASE_URL: " $BASE_URL
+    echo "USERNAME: " $USERNAME
+    echo "PASSWORD: " $PASSWORD
+    echo "OS_USERNAME: " $OS_USERNAME
+    echo "OS_PASSWORD: " $OS_PASSWORD
+    echo "OS_TENANT_NAME: " $OS_TENANT_NAME
+    echo "OS_AUTH_URL: " $OS_AUTH_URL
+    echo "OS_APIFACING: " $OS_APIFACING
+    echo "CLUSTER_NAME: " $CLUSTER_NAME
+    echo "AMBARI_USER: " $AMBARI_USER
+    echo "AMBARI_PASSWORD" $AMBARI_PASSWORD
+    echo "SSH_KEY_NAME" $SSH_KEY_NAME
+    echo "SSH_KEY: " $SSH_KEY
+
     docker run -i \
     --privileged \
     --rm \
