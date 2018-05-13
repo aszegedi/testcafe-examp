@@ -13,11 +13,6 @@ export DISPLAY=:1.0
 fluxbox >/dev/null 2>&1 &
 sleep 20
 
-sudo -E -u testcafe \
-    echo "BASE_URL: " $BASE_URL \
-    echo "USERNAME: " $USERNAME \
-    echo "PASSWORD: " $PASSWORD
-
 sudo -E -u testcafe node_modules/.bin/testcafe --ports 1337,1338 "$@"
 export RESULT=$?
 
