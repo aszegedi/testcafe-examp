@@ -13,9 +13,13 @@ export DISPLAY=:1.0
 fluxbox >/dev/null 2>&1 &
 sleep 20
 
-sudo -E -u testcafe node_modules/.bin/testcafe --ports 1337,1338 "$@"
-export RESULT=$?
+if [[ "$1" == "testcafe" ]]; then
+    sudo -E -u testcafe node_modules/.bin/testcafe --ports 1337,1338 $(echo "$@" | awk -F"testcafe " '{print $2}')
+    export RESULT=$?
+else
+    sudo -E -u testcafe "$@"
+    export RESULT=$?
+fi
 
 rm -rf .config .local .pki .dbus .gconf .mozilla .yarn .fluxbox
-
 exit $RESULT

@@ -18,8 +18,20 @@ run:
             --env-file $(ENVFILE) \
             -v $(PWD):/testcafe/project \
             -v /dev/shm:/dev/shm \
-            aszegedi/testcafe firefox /testcafe/project/tests/baseTest.ts -r spec,xunit:/testcafe/project/result.xml -S -s /testcafe/project/results/screenshots
+            aszegedi/testcafe testcafe firefox /testcafe/project/tests/baseTest.ts -r spec,xunit:/testcafe/project/result.xml -S -s /testcafe/project/results/screenshots
+            RESULT=$?
+
+run-htmlreport:
+		docker run -it \
+            --privileged \
+            --rm \
+            --net=host \
+            --name testcafe-e2e-runner \
+            --env-file $(ENVFILE) \
+            -v $(PWD):/testcafe/project \
+            -v /dev/shm:/dev/shm \
+            aszegedi/testcafe yarn test-htmlreport
             RESULT=$?
 
 .PHONY:
-		run
+		build
