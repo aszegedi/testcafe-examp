@@ -52,7 +52,7 @@ else
     --env-file $ENVFILE \
     -v $(pwd):/testcafe/project \
     -v /dev/shm:/dev/shm \
-    aszegedi/testcafe chromium /testcafe/project/tests/*.ts -r spec,xunit:/testcafe/project/result.xml -S -s /testcafe/project/results/screenshots
+    aszegedi/testcafe firefox /testcafe/project/tests/*.ts -r spec,xunit:/testcafe/project/result.xml -S -s /testcafe/project/results/screenshots
     RESULT=$?
 fi
 
