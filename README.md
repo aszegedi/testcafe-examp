@@ -19,7 +19,6 @@ Test command in [package.json](package.json):
 2. ```yarn test```
 
 ## Headless non browser-dependent testing 
-    
 Aside for Chrome, [TestCafe supports a number of browsers](http://devexpress.github.io/testcafe/documentation/using-testcafe/common-concepts/browsers/browser-support.html#officially-supported-browsers) out-of-the-box. Further, if you don’t need to test browser-dependent functionality, then you can use a headless browser.
     
 [Testing in Headless Mode](http://devexpress.github.io/testcafe/documentation/using-testcafe/common-concepts/browsers/testing-in-headless-mode.html) I've introduced a new test command in [package.json](package.json):
@@ -29,8 +28,19 @@ Aside for Chrome, [TestCafe supports a number of browsers](http://devexpress.git
 1. Set the needed environment variables for [environment](environment/environment.ts) file
 2. ```yarn test-headless```
 
-## Possibilities with testcafe/testcafe Docker image
-Execute headless Google Chrome and Firefox e2e tests in Docker container with the help of [Official TestCafe Docker image.](https://hub.docker.com/r/testcafe/testcafe/)
+## Possibilities with TestCafe Docker image
+> "TestCafe provides a preconfigured [TestCafe Docker image](https://hub.docker.com/r/testcafe/testcafe/) with Chromium and Firefox installed. Therefore, you can avoid manual installation of browsers and the testing framework on the server." by [TestCafe](https://devexpress.github.io/testcafe/documentation/using-testcafe/installing-testcafe.html#using-testcafe-docker-image)
+```
+docker pull testcafe/testcafe
+```
+So with the help of this image you can run your local developed tests in the related Docker container with headless Google Chrome and/or Firefox.
+
+## Custom Docker image for CI builds
+Unfortunately the official TestCafe Docker image is not sufficient for CI test execution during builds. So I had to create a new "alike" Docker image for this purpose. 
+
+```make build```
+
+This command creates the `aszegedi/testcafe` (~710 MB) Docker image based on the project's [Docker file](Dockerfile).
 
 ### Run tests in this container on desktop
 1. Set the needed environment variables for [environment](environment/environment.ts) file
@@ -45,7 +55,6 @@ Execute headless Google Chrome and Firefox e2e tests in Docker container with th
 [Docker run reference](https://docs.docker.com/engine/reference/run/)
 
 ## Comparison (brief list from several articles)
-
 |Categories|Protractor|WebDriverIO|Night Watch|TestCafe|
 |:---------|:--------:|:---------:|:---------:|:------:|
 |Architecture|Protractor is a wrapper around WebdriverJS (selenium-webdriver node module).|WebdriverIO is custom implementation of W3C webdriver JSON wire protocol.|Night Watch is custom implementation of W3C webdriver JSON wire protocol.|TestCafe uses a URL-rewriting proxy instead of WebDriver. This proxy injects the driver script that emulates user actions into the tested page. This way TestCafe can do everything required for the testing: it can emulate user actions, authentication, run its own scripts & etc.|
