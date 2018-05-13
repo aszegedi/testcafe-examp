@@ -7,8 +7,8 @@ const loginPage = new LoginPage();
 
 fixture `Cloudbreak Base examples`
     .page(BASE_URL)
-    .beforeEach(async ctx => {
-        await loginPage.login(ctx);
+    .beforeEach(async t => {
+        await loginPage.login();
     });
 
 const actualURL = basePage.getPageUrl();

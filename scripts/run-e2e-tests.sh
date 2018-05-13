@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+#!/bin/sh
+set -x
 
 : ${BASE_URL:? required}
 : ${ENVFILE:=./utils/testenvironment}

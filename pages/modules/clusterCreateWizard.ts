@@ -1,4 +1,4 @@
-import { Selector } from 'testcafe';
+import { Selector, t } from 'testcafe';
 
 export default class ClusterCreateWizard {
     public templateSwitch: any = Selector('app-basic-advanced-toggler i');
@@ -13,7 +13,7 @@ export default class ClusterCreateWizard {
     public sshSelector = Selector('#cb-cluster-create-security-ssh-key-name-select');
     public createButton = Selector('.btn.btn-primary.text-uppercase');
 
-    async setAdvancedTemplate(t) {
+    async setAdvancedTemplate() {
         await t
             .maximizeWindow()
             .click(this.templateSwitch)
@@ -25,7 +25,6 @@ export default class ClusterCreateWizard {
         user: string,
         password: string,
         sshKeyName: string,
-        t,
         network?: string,
         subnet?: string,
         securityGroupMaster?: string,
@@ -56,7 +55,6 @@ export default class ClusterCreateWizard {
         user: string,
         password: string,
         sshKey: string,
-        t,
         network?: string,
         subnet?: string,
         securityGroupMaster?: string,

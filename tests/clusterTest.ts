@@ -19,17 +19,17 @@ const sshKeyName = SSH_KEY_NAME;
 
 fixture `Cloudbreak Cluster examples`
     .page(BASE_URL)
-    .beforeEach(async ctx => {
-        await loginPage.login(ctx);
+    .beforeEach(async t => {
+        await loginPage.login();
     });
 
 test('Create new cluster with Advanced Template has been done successfully', async t => {
     await basePage.openPage('clusters/ref/create');
 
-    await wizard.setAdvancedTemplate(t);
+    await wizard.setAdvancedTemplate();
 
     await t
-        .expect(wizard.createOpenStackCluster(credentialName, clusterName, user, password, sshKeyName, t)).ok()
+        .expect(wizard.createOpenStackCluster(credentialName, clusterName, user, password, sshKeyName)).ok()
 });
 
 test('New cluster has been started successfully', async t => {
@@ -39,8 +39,8 @@ test('New cluster has been started successfully', async t => {
 });
 
 test('New cluster is terminated successfully', async t => {
-    await clusterPage.openClusterDetails(clusterName, t);
-    await details.forceTerminateCluster(t);
+    await clusterPage.openClusterDetails(clusterName);
+    await details.forceTerminateCluster();
 
     await t
         .expect(clusterPage.getWidgetStatus(clusterName)).contains('Terminating', 'check cluster widget shows terminating status')

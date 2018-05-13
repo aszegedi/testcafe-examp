@@ -9,8 +9,8 @@ const wizard = new CredentialCreateWizard();
 
 fixture `Cloudbreak Credential examples`
     .page(BASE_URL)
-    .beforeEach(async ctx => {
-        await loginPage.login(ctx);
+    .beforeEach(async t => {
+        await loginPage.login();
     });
 
 test('New OpenStack credential has been created successfully', async t => {
@@ -24,8 +24,8 @@ test('New OpenStack credential has been created successfully', async t => {
 
     await basePage.openPage('getstarted');
 
-    await wizard.selectProvider('openstack', t);
+    await wizard.selectProvider('openstack');
 
     await t
-        .expect(wizard.createOpenStackCredential(keystoneVersion, credentialName, user, password, tenantName, endpoint, apiFacing, t)).ok('check OpenStack V2 credential has been created with no error')
+        .expect(wizard.createOpenStackCredential(keystoneVersion, credentialName, user, password, tenantName, endpoint, apiFacing)).ok('check OpenStack V2 credential has been created with no error')
 });

@@ -18,7 +18,7 @@ run:
             --env-file $(ENVFILE) \
             -v $(PWD):/testcafe/project \
             -v /dev/shm:/dev/shm \
-            aszegedi/testcafe chromium /testcafe/project/tests/loginTest.ts -r spec,xunit:/testcafe/project/result.xml -S -s /testcafe/project/results/screenshots
+            aszegedi/testcafe firefox /testcafe/project/tests/loginTest.ts -r spec,xunit:/testcafe/project/result.xml -S -s /testcafe/project/results/screenshots
             RESULT=$?
 
 .PHONY:

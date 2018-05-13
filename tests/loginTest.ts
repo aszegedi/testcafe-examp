@@ -18,14 +18,14 @@ test('Cloudbreak page Title is present', async t => {
 });
 
 test('Cloudbreak Login has been failed for invalid user credentials', async t => {
-    await loginPage.invalidLogin(t);
+    await loginPage.invalidLogin();
 
     await t
         .expect(loginPage.errorMessage.textContent).contains('Login failed: Incorrect email/password or the account is disabled.')
 });
 
 test('Valid Cloudbreak user has been logged in successfully ', async t => {
-    await loginPage.login(t);
+    await loginPage.login();
 
     await t
         .expect(actualURL()).notContains('login', 'check actual URL does not contain "login"')

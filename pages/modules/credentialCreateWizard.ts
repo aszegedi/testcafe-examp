@@ -1,10 +1,10 @@
-import { Selector } from 'testcafe';
+import { Selector, t } from 'testcafe';
 
 export default class CredentialCreateWizard {
     public createCredentialApp = Selector('app-get-started');
     public providerSelector = this.createCredentialApp.find('.cb-credential-create-started-select-provider-switch');
 
-    async selectProvider(providerName: string, t) {
+    async selectProvider(providerName: string) {
         let name = (providerName.toLowerCase() == 'azure') ? 'msa' : providerName.toLowerCase();
         const providerButton = Selector('div[class="option"] img[src*="' + name + '.png"]');
 
@@ -14,7 +14,7 @@ export default class CredentialCreateWizard {
             .click(providerButton)
     }
     
-    async createOpenStackCredential(keystoneVersion: string, name: string, user: string, password: string, tenantName: string, endpoint: string, apiFacing: string, t) {
+    async createOpenStackCredential(keystoneVersion: string, name: string, user: string, password: string, tenantName: string, endpoint: string, apiFacing: string) {
         const keystoneSelector = Selector('#keystone-version-dropdown');
         const nameField = Selector('#name');
         const userField = Selector('#user');

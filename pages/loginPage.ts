@@ -1,4 +1,4 @@
-import { Selector } from 'testcafe';
+import { Selector, t } from 'testcafe';
 import { PASSWORD, USERNAME } from '../environment/environment';
 
 export default class LoginPage {
@@ -8,7 +8,7 @@ export default class LoginPage {
     public loginButton = this.loginForm.find('#loginBtn');
     public errorMessage = Selector('div.error');
 
-    async login (t) {
+    async login () {
         const userName = USERNAME;
         const password = PASSWORD;
 
@@ -18,7 +18,7 @@ export default class LoginPage {
             .click(this.loginButton);
     }
 
-    async invalidLogin (t) {
+    async invalidLogin () {
         await t
             .typeText(this.userNameInput, 'valami')
             .typeText(this.passwordInput, ' ')

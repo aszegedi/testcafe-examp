@@ -1,4 +1,4 @@
-import { Selector } from 'testcafe';
+import { Selector, t } from 'testcafe';
 
 export default class ClusterPage {
     public createButton = Selector('#btnCreateCluster');
@@ -12,7 +12,7 @@ export default class ClusterPage {
         return Selector('a[data-stack-name="' + clusterName + '"]').count;
     }
 
-    async openClusterDetails(clusterName: string, t) {
+    async openClusterDetails(clusterName: string) {
         const widgetLink = Selector('a[data-stack-name="' + clusterName + '"]');
 
         await t
