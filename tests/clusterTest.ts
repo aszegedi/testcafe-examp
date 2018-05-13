@@ -34,7 +34,7 @@ test('Create new cluster with Advanced Template has been done successfully', asy
 
 test('New cluster has been started successfully', async t => {
     await t
-        .expect(clusterPage.getWidgetStatus(clusterName)).notContains('in progress', 'check cluster widget does not show in progress status', { timeout: 1600000 })
+        .expect(clusterPage.getWidgetStatus(clusterName)).notContains('in progress', 'check cluster widget does not show in progress status', { timeout: 1800000 })
         .expect(clusterPage.getWidgetStatus(clusterName)).contains('Running', 'check cluster widget shows running status')
 });
 
