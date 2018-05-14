@@ -54,14 +54,14 @@ Aside for Chrome, [TestCafe supports a number of browsers](http://devexpress.git
 ```
 docker pull testcafe/testcafe
 ```
-So with the help of this image you can run your local developed tests in the related Docker container with headless Google Chrome and/or Firefox.
+So with the help of this image you can run your locally developed and built tests in the related Docker container with headless Google Chrome and/or Firefox.
 
 ## Custom Docker image for CI builds
-Unfortunately the official TestCafe Docker image is not sufficient for CI test execution during builds. So I had to create a new "alike" Docker image for this purpose. 
+Unfortunately the official TestCafe Docker image is not sufficient for CI test execution, because of we need to install NPM components then build the project after a GitHub clone. So I created a new Docker image for this purpose, based on the TestCafe one. 
 
+Till this Docker image becomes an official Hortonworks image at DockerHub, you should build this:
 ```make build```
-
-This command creates the `aszegedi/testcafe` (~710 MB) Docker image based on the project's [Docker file](Dockerfile).
+This command creates the `aszegedi/testcafe` (~710 MB) Docker image in your local Docker environment based on the project's [Docker file](Dockerfile).
 
 ### Run tests in this container on desktop
 1. Set the needed environment variables for [environment](environment/environment.ts) file
