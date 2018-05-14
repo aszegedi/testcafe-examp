@@ -18,7 +18,7 @@ run:
             --env-file $(ENVFILE) \
             -v $(PWD):/testcafe/project \
             -v /dev/shm:/dev/shm \
-            aszegedi/testcafe testcafe firefox /testcafe/project/tests/baseTest.ts -r spec,xunit:/testcafe/project/result.xml -S -s /testcafe/project/results/screenshots
+            aszegedi/testcafe testcafe 'chromium --no-sandbox' /testcafe/project/tests/clusterTest.ts -r spec,xunit:/testcafe/project/result.xml -S -s /testcafe/project/results/screenshots
             RESULT=$?
 
 run-htmlreport:
