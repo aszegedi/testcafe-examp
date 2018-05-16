@@ -13,12 +13,12 @@ fixture `Cloudbreak Base examples`
 
 const actualURL = basePage.getPageUrl();
 
-test('Clusters menu item is present', async t => {
+test('Smoke | Clusters menu item is present | 004', async t => {
     await t
         .expect(basePage.isMenuItemPresent('.menu-clusters')).gte(1, 'check Clusters menu is visible')
 });
 
-test('Cloudbreak Logout has been done successfully', async t => {
+test('Smoke | Cloudbreak Logout has been done successfully | 005', async t => {
     await t
         .click(basePage.logoutIcon)
         .click(basePage.confirmation)

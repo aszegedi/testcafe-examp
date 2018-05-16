@@ -13,7 +13,7 @@ fixture `Cloudbreak Credential examples`
         await loginPage.login();
     });
 
-test('New OpenStack credential has been created successfully', async t => {
+test('Smoke | New OpenStack credential has been created successfully | 006', async t => {
     const credentialName = 'autotesting-os';
     const keystoneVersion = 'v2';
     const user = OS_USERNAME;

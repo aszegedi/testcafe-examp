@@ -23,7 +23,7 @@ fixture `Cloudbreak Cluster examples`
         await loginPage.login();
     });
 
-test('Create new cluster with Advanced Template has been done successfully', async t => {
+test('Smoke | Create new cluster with Advanced Template has been done successfully | 007', async t => {
     await basePage.openPage('clusters/ref/create');
 
     await wizard.setAdvancedTemplate();
@@ -32,13 +32,13 @@ test('Create new cluster with Advanced Template has been done successfully', asy
         .expect(wizard.createOpenStackCluster(credentialName, clusterName, user, password, sshKeyName)).ok()
 });
 
-test('New cluster has been started successfully', async t => {
+test('Smoke | New cluster has been started successfully | 008', async t => {
     await t
         .expect(clusterPage.getWidgetStatus(clusterName)).notContains('in progress', 'check cluster widget does not show in progress status', { timeout: 1800000 })
         .expect(clusterPage.getWidgetStatus(clusterName)).contains('Running', 'check cluster widget shows running status')
 });
 
-test('New cluster is terminated successfully', async t => {
+test('Smoke | New cluster is terminated successfully | 009', async t => {
     await clusterPage.openClusterDetails(clusterName);
     await details.forceTerminateCluster();
 

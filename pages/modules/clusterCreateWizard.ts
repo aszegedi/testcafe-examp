@@ -41,6 +41,7 @@ export default class ClusterCreateWizard {
             .click(this.nextButton, { speed: 0.5 })
             .click(this.nextButton, { speed: 0.5 })
             .click(this.nextButton, { speed: 0.5 })
+            .click(this.nextButton, { speed: 0.5 })
             .typeText(this.userField, user, { replace: true })
             .typeText(this.passwordField, password, { replace: true })
             .typeText(this.confirmPasswordField, password, { replace: true })

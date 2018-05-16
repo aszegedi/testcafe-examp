@@ -7,7 +7,7 @@ const localStorageGet = ClientFunction(key => localStorage.getItem(key));
 fixture `Cloudbreak Local Storage examples`
     .page(BASE_URL);
 
-test ('Cloudbreak GUI local storage has been updated successfully', async t => {
+test ('Regression | Cloudbreak GUI local storage has been updated successfully | 010', async t => {
     await localStorageSet('teszt', 'elek');
 
     await t
