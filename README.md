@@ -1,6 +1,6 @@
 # PoC project for Cloudbreak GUI
 
-We use Protractor and Jasmine for our GUI E2E and Integration tests. However in the near future we have basically change our existing projects, because of the WebDriverJS promise manager is being to deprecate and remove. So we saw the time to look around and give something new a try.
+We use Protractor and Jasmine for our GUI E2E and Integration tests. However in the near future we are having to basically change our existing projects, because of the WebDriverJS promise manager is being to deprecate and remove. So we saw the time to look around and give something new a try.
 
 The Depreciation Plan says:
 
