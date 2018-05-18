@@ -1,5 +1,20 @@
 # PoC project for Cloudbreak GUI
 
+We use Protractor and Jasmine for our GUI E2E and Integration tests. However in the near future we have basically change our existing projects, because of the WebDriverJS promise manager is being to deprecate and remove. So we saw the time to look around and give something new a try.
+
+The Depreciation Plan says:
+
+* **Phase 1: allow users to opt-out of the promise manager** (October 2016)
+* **Phase 2: opt-in to the promise manager** (October 2017)
+* **Phase 3: removing the promise manager** (October 2018)
+
+check the [SeleniumHQ's github issue](https://github.com/SeleniumHQ/selenium/issues/2969) for details.
+
+> "Instead of the control flow, you can synchronize your commands with promise chaining or the upcoming ES7 feature async/await...The latest Node.js provides native async/await, which means we can get stable e2e test without using control flow in javascript test.
+>
+> **Note:** 
+> To write and run native async/await test, the node.js version should be greater than or equal to 8.0, and Jasmine version should be greater than or equal to 2.7" by [Protractor](https://www.protractortest.org/#/async-await)
+
 ## Background
 1. [An Overview of JavaScript Testing in 2018](https://medium.com/welldone-software/an-overview-of-javascript-testing-in-2018-f68950900bc3)
 2. [Use React tools for better Angular apps](https://medium.com/@martin_hotell/use-react-tools-for-better-angular-apps-b0f14f3f8114)
