@@ -25,11 +25,10 @@ fixture `Cloudbreak Cluster examples`
 
 test('Smoke | Create new cluster with Advanced Template has been done successfully | 007', async t => {
     await basePage.openPage('clusters/ref/create');
-
-    await wizard.setAdvancedTemplate();
+    await wizard.createOpenStackCluster(credentialName, clusterName, user, password, sshKeyName);
 
     await t
-        .expect(wizard.createOpenStackCluster(credentialName, clusterName, user, password, sshKeyName)).ok()
+        .expect(clusterPage.getWidget(clusterName)).gt(0, 'check cluster widget has been created')
 });
 
 test('Smoke | New cluster has been started successfully | 008', async t => {
