@@ -2114,6 +2114,22 @@ testcafe-browser-tools@1.5.1:
     read-file-relative "^1.2.0"
     which-promise "^1.0.0"
 
+testcafe-browser-tools@^1.6.2:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/testcafe-browser-tools/-/testcafe-browser-tools-1.6.2.tgz#309fb98f1f0beb7d0e1b9160ba6ce8a81fcb7280"
+  dependencies:
+    array-find "^1.0.0"
+    babel-runtime "^5.6.15"
+    graceful-fs "^4.1.11"
+    linux-platform-info "^0.0.3"
+    mkdirp "^0.5.1"
+    mustache "^2.1.2"
+    os-family "^1.0.0"
+    pify "^2.3.0"
+    pinkie "^2.0.1"
+    read-file-relative "^1.2.0"
+    which-promise "^1.0.0"
+
 testcafe-hammerhead@13.3.1:
   version "13.3.1"
   resolved "https://registry.yarnpkg.com/testcafe-hammerhead/-/testcafe-hammerhead-13.3.1.tgz#89b1356d29d3adcaf1e9a23413f7037afea546e1"

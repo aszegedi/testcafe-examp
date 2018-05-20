@@ -1,7 +1,7 @@
 FROM alpine:edge
 
 RUN apk --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ add \
- nodejs nodejs-npm chromium firefox xwininfo xvfb dbus eudev ttf-freefont fluxbox gawk yarn sudo tzdata
+ nodejs nodejs-npm chromium nss chromium-chromedriver firefox xwininfo xvfb dbus eudev ttf-freefont fluxbox gawk yarn sudo tzdata
 
 ENV TZ=Europe/Berlin
 RUN cp /usr/share/zoneinfo/$TZ /etc/localtime && \
@@ -28,6 +28,9 @@ RUN adduser -D testcafe && \
 
 WORKDIR /testcafe/
 ENV HOME=/testcafe/project
+ENV CHROME_BIN=/usr/bin/chromium-browser
+ENV CHROME_DRIVER_BIN=/usr/bin/chromedriver
+ENV PATH=$PATH:/usr/bin/chromedriver
 
 EXPOSE 1337 1338
 

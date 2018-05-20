@@ -76,7 +76,7 @@ Unfortunately the official TestCafe Docker image is not sufficient for CI test e
 
 Till this Docker image becomes an official Hortonworks image at DockerHub, you should build this:
 ```make build```
-This command creates the `aszegedi/testcafe` (~710 MB) Docker image in your local Docker environment based on the project's [Docker file](Dockerfile).
+This command creates the `aszegedi/testcafe` (~730 MB) Docker image in your local Docker environment based on the project's [Docker file](Dockerfile).
 
 ### Run tests in this container on desktop
 1. Set the needed environment variables for [environment](environment/environment.ts) file

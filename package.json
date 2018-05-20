@@ -19,7 +19,8 @@
     "test-headless": "node_modules/.bin/testcafe chrome:headless tests/loginTest.ts -r xunit:result.xml",
     "test": "node_modules/.bin/testcafe chrome tests/*.ts -r spec,xunit:result.xml -S -s results/screenshots --debug-on-fail",
     "test-xmlreport": "node_modules/.bin/testcafe chrome tests/*.ts -r xunit:result.xml -S -s results/screenshots",
-    "test-htmlreport": "PROJECT_NAME=cloudbreak HTML_REPORT_PATH=results node_modules/.bin/testcafe --ports 1337,1338 'chromium --no-sandbox' tests/*.ts -r html-testrail -S -s results/screenshots"
+    "test-htmlreport": "PROJECT_NAME=cloudbreak HTML_REPORT_PATH=results node_modules/.bin/testcafe --ports 1337,1338 'chromium --no-sandbox' tests/*.ts -r html-testrail -S -s results/screenshots",
+    "test-with-runner": "yarn run compile && node tmp/runner.js"
   },
   "homepage": "https://github.com/DevExpress/testcafe#readme",
   "devDependencies": {
@@ -31,6 +32,7 @@
     "testcafe-angular-selectors": "^0.3.0",
     "testcafe-live": "^0.1.3",
     "testcafe-reporter-html-testrail": "^2.0.0",
+    "testcafe-browser-tools": "^1.6.2",
     "tmp": "^0.0.33",
     "ts-node": "^6.0.0",
     "tslib": "^1.9.0",

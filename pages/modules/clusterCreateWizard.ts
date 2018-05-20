@@ -44,18 +44,7 @@ export default class ClusterCreateWizard {
     }
 
 
-    async createOpenStackCluster(
-        credentialName: string,
-        clusterName: string,
-        user: string,
-        password: string,
-        sshKeyName: string,
-        network?: string,
-        subnet?: string,
-        securityGroupMaster?: string,
-        securityGroupWorker?: string,
-        securityGroupCompute?: string
-    ) {
+    async createOpenStackCluster(credentialName: string, clusterName: string, user: string, password: string, sshKeyName: string, network?: string, subnet?: string, securityGroupMaster?: string, securityGroupWorker?: string, securityGroupCompute?: string) {
         await this.setAdvancedTemplate();
         await this.generalConfiguration(credentialName, clusterName);
         await this.clickNextOnPage('app-general-configuration');
