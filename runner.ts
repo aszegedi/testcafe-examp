@@ -1,3 +1,9 @@
+/**
+ * Optimized for Linux environment!
+ *
+ * If your CHROME_BIN is not on the defined path, you cannot run your tests with this. Please check the CHROME_BIN variable, and adjust if it is needed for you.
+ */
+
 import { CHROME_BIN } from './environment/environment';
 import * as fs from 'fs';
 
