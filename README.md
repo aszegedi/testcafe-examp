@@ -43,6 +43,8 @@ check the [SeleniumHQ's github issue](https://github.com/SeleniumHQ/selenium/iss
 |Licenses|MIT|MIT|MIT|MIT|
 |Dependencies|15|21|10|62|
 
+I created a [new Protractor project](https://github.com/aszegedi/protractor-examp) as well to comparison. I applied the "new" [Async/Await](https://www.protractortest.org/#/async-await) syntax (learn more at [JavaScript Info](https://javascript.info/async-await)). So you can easily compare the TestCafe and the Protractor way for the same application and goal.
+
 ## Main Goal
 Create a demo project with TestCafe to cover a cluster creation workflow with Cloudbreak GUI.
 
