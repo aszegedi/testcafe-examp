@@ -43,6 +43,25 @@ export default class ClusterCreateWizard {
             .click(this.baseImageTab, { speed: 0.5 })
     }
 
+    async disableGatewayTopology() {
+        const gatewaySlider = Selector('app-gateway-configuration mat-slide-toggle');
+
+        await t
+            .click(gatewaySlider)
+    }
+
+    async setAmbariCredentials(user: string, password: string) {
+        await t
+            .typeText(this.userField, user, { replace: true })
+            .typeText(this.passwordField, password, { replace: true })
+            .typeText(this.confirmPasswordField, password, { replace: true})
+    }
+
+    async selectSSHKey(name: string) {
+        await t
+            .click(this.sshSelector)
+            .click(Selector('mat-option').withText(name))
+    }
 
     async createOpenStackCluster(credentialName: string, clusterName: string, user: string, password: string, sshKeyName: string, network?: string, subnet?: string, securityGroupMaster?: string, securityGroupWorker?: string, securityGroupCompute?: string) {
         await this.setAdvancedTemplate();
@@ -51,15 +70,13 @@ export default class ClusterCreateWizard {
         await this.clickNextOnPage('app-hardware-and-storage');
         await this.clickNextOnPage('app-config-cluster-extensions');
         await this.clickNextOnPage('app-config-external-sources');
+        await this.disableGatewayTopology();
         await this.clickNextOnPage('app-gateway-configuration');
         await this.clickNextOnPage('app-network');
+        await this.setAmbariCredentials(user, password);
+        await this.selectSSHKey(sshKeyName);
 
         await t
-            .typeText(this.userField, user, { replace: true })
-            .typeText(this.passwordField, password, { replace: true })
-            .typeText(this.confirmPasswordField, password, { replace: true })
-            .click(this.sshSelector)
-            .click(Selector('mat-option').withText(sshKeyName))
             .click(this.createButton);
     }
 }
