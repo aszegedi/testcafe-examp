@@ -39,7 +39,7 @@ else
     --env-file $ENVFILE \
     -v $(pwd):/testcafe/project \
     -v /dev/shm:/dev/shm \
-    aszegedi/testcafe testcafe firefox /testcafe/project/tests/*.ts -r spec,xunit:/testcafe/project/result.xml -S -s /testcafe/project/results/screenshots
+    aszegedi/testcafe yarn test-with-runner
     RESULT=$?
 fi
 

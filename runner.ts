@@ -34,9 +34,9 @@ testcafeBrowserTools
           .reporter('xunit', stream)
           .screenshots('results/screenshots', true)
           .run({
-            selectorTimeout: 50000,
-            assertionTimeout: 7000,
-            pageLoadTimeout: 8000,
+            selectorTimeout: 20000,
+            assertionTimeout: 120000,
+            pageLoadTimeout: 60000,
             speed: 0.5
         }).then(failedCount => {
             console.log('Tests failed: ' + failedCount);
