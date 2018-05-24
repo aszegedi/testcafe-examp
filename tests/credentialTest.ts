@@ -12,8 +12,8 @@ const wizard = new CredentialCreateWizard();
 fixture `Cloudbreak Credential examples`
     .page(BASE_URL)
     .beforeEach(async t => {
-        t.ctx.credentialName = 'autotesting-os';
         await loginPage.login();
+        t.ctx.credentialName = 'autotesting-os';
     });
 
 test('Smoke | New OpenStack credential has been created successfully | 006', async t => {

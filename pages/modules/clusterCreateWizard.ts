@@ -40,6 +40,10 @@ export default class ClusterCreateWizard {
             .click(this.credentialSelector, { speed: 0.5 })
             .click(Selector('mat-option').withText(credentialName))
             .typeText(this.clusterNameField, clusterName, { replace: true })
+    }
+
+    async selectBaseImage() {
+        await t
             .click(this.baseImageTab, { speed: 0.5 })
     }
 
@@ -67,6 +71,8 @@ export default class ClusterCreateWizard {
         await this.setAdvancedTemplate();
         await this.generalConfiguration(credentialName, clusterName);
         await this.clickNextOnPage('app-general-configuration');
+        await this.selectBaseImage();
+        await this.clickNextOnPage('app-image-catalog');
         await this.clickNextOnPage('app-hardware-and-storage');
         await this.clickNextOnPage('app-config-cluster-extensions');
         await this.clickNextOnPage('app-config-external-sources');
