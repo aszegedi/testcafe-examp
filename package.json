@@ -14,7 +14,7 @@
   "scripts": {
     "compile": "node_modules/.bin/tsc --pretty",
     "watch": "node_modules/.bin/tsc -w",
-    "clean": "node_modules/.bin/rimraf tmp/ results/ result.xml .cache",
+    "clean": "node_modules/.bin/rimraf tmp/ results/ result.xml .cache .config .fluxbox .pki .yarn ",
     "test-live": "node_modules/.bin/testcafe-live chrome tests/credentialTest.ts",
     "test-headless": "node_modules/.bin/testcafe chrome:headless tests/loginTest.ts -r xunit:result.xml",
     "test": "node_modules/.bin/testcafe chrome tests/*.ts -r spec,xunit:result.xml -S -s results/screenshots --debug-on-fail",

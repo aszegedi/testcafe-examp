@@ -14,10 +14,10 @@ export default class BasePage {
         return ClientFunction(() => document.title);
     }
 
-    openPage(pageName: string) {
+    async openPage(pageName: string) {
         const name = pageName.toLowerCase();
 
-        return browser.goTo('/' + name);
+        await browser.goTo('/' + name);
     }
 
     isMenuItemPresent(menuItemClass: string) {

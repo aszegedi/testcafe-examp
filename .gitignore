@@ -14,4 +14,10 @@ node_modules
 tmp
 Vagrantfile
 .vagrant
+.cache
+.config
+.fluxbox
+.pki
+.yarn
+Desktop
 

@@ -18,7 +18,7 @@ testcafeBrowserTools
     .then(browserInfo => {
         chromeInfo = browserInfo;
 
-        chromeInfo.cmd = `${chromeInfo.cmd} --no-sandbox --disable-web-security`;
+        chromeInfo.cmd = `${chromeInfo.cmd} --disable-web-security`;
     })
     .then(() => createTestCafe(null, 1337, 1338))
     .then(tc => {
