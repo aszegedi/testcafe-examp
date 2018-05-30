@@ -1,10 +1,10 @@
 ENVFILE=utils/testenvironment
 
-refresh-image:
-		docker pull testcafe/testcafe
+pull:
+		docker pull aszegedi/testcafe-examp
 
 run-on-jenkins:
-		./scripts/e2e-gui-test.sh
+		./scripts/run-e2e-tests.sh
 
 build:
 		docker build -t aszegedi/testcafe .
@@ -18,7 +18,7 @@ run-with-cli:
             --env-file $(ENVFILE) \
             -v $(PWD):/testcafe/project \
             -v /dev/shm:/dev/shm \
-            aszegedi/testcafe testcafe 'chromium --no-sandbox' /testcafe/project/tests/clusterTest.ts -r spec,xunit:/testcafe/project/result.xml -S -s /testcafe/project/results/screenshots
+            aszegedi/testcafe-examp testcafe chromium /testcafe/project/tests/clusterTest.ts -r spec,xunit:/testcafe/project/result.xml -S -s /testcafe/project/results/screenshots
             RESULT=$?
 
 run-with-script:
@@ -30,7 +30,7 @@ run-with-script:
             --env-file $(ENVFILE) \
             -v $(PWD):/testcafe/project \
             -v /dev/shm:/dev/shm \
-            aszegedi/testcafe yarn test-with-runner
+            aszegedi/testcafe-examp yarn test-with-runner
             RESULT=$?
 
 .PHONY:

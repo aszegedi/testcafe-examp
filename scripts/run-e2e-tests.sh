@@ -4,10 +4,8 @@ set -x
 : ${BASE_URL:? required}
 : ${ENVFILE:=./utils/testenvironment}
 
-if [[ "$(docker images -q aszegedi/testcafe 2> /dev/null)" == "" ]]; then
- echo "Build the Test Runner Docker image"
- docker build -t aszegedi/testcafe .
-fi
+echo "Refresh the Test Runner Docker image"
+docker pull aszegedi/testcafe-examp
 
 export TEST_CONTAINER_NAME=testcafe-e2e-runner
 
@@ -39,7 +37,7 @@ else
     --env-file $ENVFILE \
     -v $(pwd):/testcafe/project \
     -v /dev/shm:/dev/shm \
-    aszegedi/testcafe yarn test-with-runner
+    aszegedi/testcafe-examp yarn test-with-runner
     RESULT=$?
 fi
 
