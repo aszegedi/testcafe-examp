@@ -4,7 +4,8 @@ export default class ClusterCreateWizard {
     public templateSwitch: any = Selector('app-basic-advanced-toggler i');
     public credentialSelector: any = Selector('[placeholder="Please select credential"]');
     public clusterNameField: any = Selector('#clusterName');
-    public baseImageTab = Selector('mat-radio-button').withText('Base Image');
+    public imageTypeSelect = Selector('[data-qa="imagetype-select"]');
+    public baseImageOption = Selector('[data-qa="image-base"]');
     public nextButton = Selector('.action-container .btn.btn-primary', { visibilityCheck: true });
     public userField = Selector('input[formcontrolname="username"]');
     public passwordField = Selector('input[formcontrolname="password"]');
@@ -44,7 +45,8 @@ export default class ClusterCreateWizard {
 
     async selectBaseImage() {
         await t
-            .click(this.baseImageTab, { speed: 0.5 })
+            .click(this.imageTypeSelect, { speed: 0.5 })
+            .click(this.baseImageOption, { speed: 0.5 })
     }
 
     async disableGatewayTopology() {
